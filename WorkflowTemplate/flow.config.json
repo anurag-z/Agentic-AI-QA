@@ -1,0 +1,9 @@
+{
+    "targetRepoPath": "C:\\Users\\source\\repos\\solution-template",
+    "adoOrgProject": {
+        "org": "tr-tax",
+        "project": "project-template"
+    },
+    "baseBranch": "main",
+    "appBaseUrl": "https://www.google.com"
+}
