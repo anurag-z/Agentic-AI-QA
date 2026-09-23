@@ -51,3 +51,6 @@ Run these in order. Each skill stops for a manual checkpoint.
 ## Still to verify
 
 Run `generate-script` → `find-locators` → `review-script` / `optimize-script` → `raise-pr` on a real story, and run `heal-testcase` on a real failing web test.
+
+<img width="886" height="414" alt="image" src="https://github.com/user-attachments/assets/a62390cc-614d-4adc-98f7-10d9d08a7a57" />
+
