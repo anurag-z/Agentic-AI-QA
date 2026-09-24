@@ -2,6 +2,8 @@
 
 Reusable flow that turns an Azure DevOps story into a test script, locators, a review, and a pull request. It is a Claude Code project: MCP servers in `WorkflowTemplate/.mcp.json` and skills in `WorkflowTemplate/.claude/skills/`. It edits the target test repo from `flow.config.json`, not this repo.
 
+<img width="886" height="414" alt="image" src="https://github.com/user-attachments/assets/a62390cc-614d-4adc-98f7-10d9d08a7a57" />
+
 ## Prerequisites
 
 - Claude Code
