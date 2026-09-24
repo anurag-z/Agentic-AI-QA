@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ADO → Test Script → PR | WorkflowTemplate Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        code, .font-mono {
+            font-family: 'JetBrains Mono', monospace;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 antialiased min-h-full flex flex-col justify-between selection:bg-indigo-500 selection:text-white">
+
+    <main class="max-w-4xl w-full mx-auto px-6 py-12 flex-grow">
+        <header class="mb-10">
+            <div class="flex items-center gap-2 text-xs font-semibold tracking-wider text-indigo-600 uppercase mb-3">
+                <span>QA-Agentic AI Workflow (Playbook)</span>
+                <span class="text-slate-300">·</span>
+                <!--<span>Project Automation</span> -->
+            </div>
+            
+            <h1 class="text-3xl md:text-4xl font-extrabold text-slate-900 tracking-tight flex items-center gap-3 flex-wrap">
+                <span>ADO</span>
+                <span class="text-indigo-500">→</span>
+                <span>Test Script</span>
+                <span class="text-indigo-500">→</span>
+                <span>PR</span>
+            </h1>
+            
+            <p class="mt-3 text-slate-600 max-w-2xl text-sm md:text-base leading-relaxed">
+                WorkflowTemplate is a chain of Claude Code skills that turns an Azure DevOps story into a reviewed, PR-ready NUnit/Selenium/Appium test in a separate target repo — with a manual checkpoint between every step.
+            </p>
+
+            <!-- Configuration Tags -->
+            <div class="mt-6 flex flex-wrap items-center gap-2.5 text-xs">
+                <div class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white border border-slate-200 shadow-xs font-medium text-slate-700">
+                    <span class="text-slate-400">target repo</span>
+                    <code class="font-mono text-indigo-600 font-semibold bg-indigo-50 px-1.5 py-0.5 rounded">Repo-Name</code>
+                </div>
+                <div class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white border border-slate-200 shadow-xs font-medium text-slate-700">
+                    <span class="text-slate-400">ADO project</span>
+                    <code class="font-mono text-indigo-600 font-semibold bg-indigo-50 px-1.5 py-0.5 rounded">ADO_Project</code>
+                </div>
+                <div class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white border border-slate-200 shadow-xs font-medium text-slate-700">
+                    <span class="text-slate-400">base branch</span>
+                    <code class="font-mono text-indigo-600 font-semibold bg-indigo-50 px-1.5 py-0.5 rounded">main</code>
+                </div>
+            </div>
+        </header>
+
+        <div class="flex items-center justify-between mb-8 pb-3 border-b border-slate-200">
+            <h2 class="text-xs font-bold uppercase tracking-wider text-slate-400">Pipeline — Run in Order</h2>
+            <span class="text-xs font-medium text-slate-500 bg-slate-200/60 px-2.5 py-1 rounded-full">7 Sequential Skills</span>
+        </div>
+
+        <div class="space-y-6 relative before:absolute before:inset-0 before:left-6 before:w-0.5 before:bg-slate-200 mb-14">
+
+            <!-- Step 0 -->
+            <div class="relative flex items-start gap-6 group">
+                <div class="z-10 flex items-center justify-center w-12 h-12 rounded-full bg-white border-2 border-slate-300 text-slate-600 font-bold text-sm shadow-sm group-hover:border-indigo-500 group-hover:text-indigo-600 transition-colors">
+                    0
+                </div>
+                <div class="flex-grow bg-white rounded-xl border border-slate-200/80 shadow-xs hover:shadow-md transition-shadow p-5 relative overflow-hidden">
+                    <div class="absolute left-0 top-0 bottom-0 w-1 bg-amber-400"></div>
+                    <div class="flex items-start justify-between gap-4 mb-2">
+                        <h3 class="font-mono font-bold text-slate-900 text-base">/generate-testcase &lt;story-id&gt;</h3>
+                        <span class="text-[10px] uppercase font-bold tracking-wider px-2 py-0.5 rounded bg-amber-50 text-amber-700 border border-amber-200">conditional</span>
+                    </div>
+                    <p class="text-xs md:text-sm text-slate-600 mb-3 leading-normal">
+                        Only needed when the story has no test case yet. Analyzes the work item with ADO-only RAG context, drafts new test case(s), and publishes to ADO as linked "Tested By" work items — but only after explicit confirmation of which ones to publish.
+                    </p>
+                    <div class="flex flex-wrap items-center justify-between gap-2 pt-3 border-t border-slate-100 text-[11px] text-slate-500">
+                        <div class="flex items-center gap-1.5">
+                            <span class="text-slate-400">via</span>
+                            <code class="font-mono bg-slate-100 px-1.5 py-0.5 rounded text-slate-700 font-medium">ado</code>
+                            <span class="text-slate-400">MCP server</span>
+                        </div>
+                        <div class="flex items-center gap-1 text-amber-700 font-medium">
+                            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>
+                            <span>manual checkpoint — confirm before publishing</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 1 -->
+            <div class="relative flex items-start gap-6 group">
+                <div class="z-10 flex items-center justify-center w-12 h-12 rounded-full bg-white border-2 border-indigo-600 text-indigo-600 font-bold text-sm shadow-sm">
+                    1
+                </div>
+                <div class="flex-grow bg-white rounded-xl border border-slate-200/80 shadow-xs hover:shadow-md transition-shadow p-5 relative overflow-hidden">
+                    <div class="absolute left-0 top-0 bottom-0 w-1 bg-indigo-500"></div>
+                    <div class="flex items-start justify-between gap-4 mb-2">
+                        <h3 class="font-mono font-bold text-slate-900 text-base">/fetch-testcase &lt;story-id&gt;</h3>
+                    </div>
+                    <p class="text-xs md:text-sm text-slate-600 mb-3 leading-normal">
+                        Pulls the ADO work item plus its linked test case(s) and normalizes them into a structured summary. If none exist, it tells you to run step 0 first.
+                    </p>
+                    <div class="flex flex-wrap items-center justify-between gap-2 pt-3 border-t border-slate-100 text-[11px] text-slate-500">
+                        <div class="flex items-center gap-1.5">
+                            <span class="text-slate-400">via</span>
+                            <code class="font-mono bg-slate-100 px-1.5 py-0.5 rounded text-slate-700 font-medium">ado</code>
+                            <span class="text-slate-400">MCP server</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 2 -->
+            <div class="relative flex items-start gap-6 group">
+                <div class="z-10 flex items-center justify-center w-12 h-12 rounded-full bg-white border-2 border-indigo-600 text-indigo-600 font-bold text-sm shadow-sm">
+                    2
+                </div>
+                <div class="flex-grow bg-white rounded-xl border border-slate-200/80 shadow-xs hover:shadow-md transition-shadow p-5 relative overflow-hidden">
+                    <div class="absolute left-0 top-0 bottom-0 w-1 bg-indigo-500"></div>
+                    <div class="flex items-start justify-between gap-4 mb-2">
+                        <h3 class="font-mono font-bold text-slate-900 text-base">/generate-script</h3>
+                    </div>
+                    <p class="text-xs md:text-sm text-slate-600 mb-3 leading-normal">
+                        Writes the NUnit/Selenium/Appium test method and any needed page-object changes directly in the target repo, following its existing conventions — placeholder locators only at this stage.
+                    </p>
+                    <div class="flex flex-wrap items-center justify-between gap-2 pt-3 border-t border-slate-100 text-[11px] text-slate-500">
+                        <div class="flex items-center gap-1.5">
+                            <span class="text-slate-400">file-writing & code generation skill</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 3 -->
+            <div class="relative flex items-start gap-6 group">
+                <div class="z-10 flex items-center justify-center w-12 h-12 rounded-full bg-white border-2 border-indigo-600 text-indigo-600 font-bold text-sm shadow-sm">
+                    3
+                </div>
+                <div class="flex-grow bg-white rounded-xl border border-slate-200/80 shadow-xs hover:shadow-md transition-shadow p-5 relative overflow-hidden">
+                    <div class="absolute left-0 top-0 bottom-0 w-1 bg-indigo-500"></div>
+                    <div class="flex items-start justify-between gap-4 mb-2">
+                        <h3 class="font-mono font-bold text-slate-900 text-base">/find-locators</h3>
+                    </div>
+                    <p class="text-xs md:text-sm text-slate-600 mb-3 leading-normal">
+                        Inspects the live running app to resolve placeholder locators into real selectors. Inspection only — it never writes Playwright code into the target repo.
+                    </p>
+                    <div class="flex flex-wrap items-center justify-between gap-2 pt-3 border-t border-slate-100 text-[11px] text-slate-500">
+                        <div class="flex items-center gap-1.5">
+                            <span class="text-slate-400">via</span>
+                            <code class="font-mono bg-slate-100 px-1.5 py-0.5 rounded text-slate-700 font-medium">playwright</code>
+                            <span class="text-slate-400">MCP server</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 4 -->
+            <div class="relative flex items-start gap-6 group">
+                <div class="z-10 flex items-center justify-center w-12 h-12 rounded-full bg-white border-2 border-indigo-600 text-indigo-600 font-bold text-sm shadow-sm">
+                    4
+                </div>
+                <div class="flex-grow bg-white rounded-xl border border-slate-200/80 shadow-xs hover:shadow-md transition-shadow p-5 relative overflow-hidden">
+                    <div class="absolute left-0 top-0 bottom-0 w-1 bg-rose-500"></div>
+                    <div class="flex items-start justify-between gap-4 mb-2">
+                        <h3 class="font-mono font-bold text-slate-900 text-base">/review-script</h3>
+                        <span class="text-[10px] uppercase font-bold tracking-wider px-2 py-0.5 rounded bg-rose-50 text-rose-700 border border-rose-200">blocking gate</span>
+                    </div>
+                    <p class="text-xs md:text-sm text-slate-600 mb-3 leading-normal">
+                        Reviews the generated changes against the target repo's own correctness and convention checklist. Findings only — never auto-fixes.
+                    </p>
+                    <div class="flex flex-wrap items-center justify-between gap-2 pt-3 border-t border-slate-100 text-[11px] text-slate-500">
+                        <div class="flex items-center gap-1.5">
+                            <span class="text-slate-400">automated static analysis & convention verification</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 4b -->
+            <div class="relative flex items-start gap-6 group">
+                <div class="z-10 flex items-center justify-center w-12 h-12 rounded-full bg-white border-2 border-slate-300 text-slate-600 font-bold text-xs shadow-sm group-hover:border-indigo-500 group-hover:text-indigo-600 transition-colors">
+                    4b
+                </div>
+                <div class="flex-grow bg-white rounded-xl border border-slate-200/80 shadow-xs hover:shadow-md transition-shadow p-5 relative overflow-hidden">
+                    <div class="absolute left-0 top-0 bottom-0 w-1 bg-slate-400"></div>
+                    <div class="flex items-start justify-between gap-4 mb-2">
+                        <h3 class="font-mono font-bold text-slate-900 text-base">/optimize-script</h3>
+                        <span class="text-[10px] uppercase font-bold tracking-wider px-2 py-0.5 rounded bg-slate-100 text-slate-600 border border-slate-200">optional, informational</span>
+                    </div>
+                    <p class="text-xs md:text-sm text-slate-600 mb-3 leading-normal">
+                        Reviews the same diff for execution-time cost — redundant waits, repeated lookups, duplicated locator logic. Not a blocker for the PR step.
+                    </p>
+                    <div class="flex flex-wrap items-center justify-between gap-2 pt-3 border-t border-slate-100 text-[11px] text-slate-500">
+                        <div class="flex items-center gap-1.5">
+                            <span class="text-slate-400">performance & readability tuning</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 5 -->
+            <div class="relative flex items-start gap-6 group">
+                <div class="z-10 flex items-center justify-center w-12 h-12 rounded-full bg-white border-2 border-indigo-600 text-indigo-600 font-bold text-sm shadow-sm">
+                    5
+                </div>
+                <div class="flex-grow bg-white rounded-xl border border-slate-200/80 shadow-xs hover:shadow-md transition-shadow p-5 relative overflow-hidden">
+                    <div class="absolute left-0 top-0 bottom-0 w-1 bg-emerald-500"></div>
+                    <div class="flex items-start justify-between gap-4 mb-2">
+                        <h3 class="font-mono font-bold text-slate-900 text-base">/raise-pr</h3>
+                    </div>
+                    <p class="text-xs md:text-sm text-slate-600 mb-3 leading-normal">
+                        Commits the reviewed changes to a new branch and opens a pull request in the target repo.
+                    </p>
+                    <div class="flex flex-wrap items-center justify-between gap-2 pt-3 border-t border-slate-100 text-[11px] text-slate-500">
+                        <div class="flex items-center gap-1.5">
+                            <span class="text-slate-400">via</span>
+                            <code class="font-mono bg-slate-100 px-1.5 py-0.5 rounded text-slate-700 font-medium">github</code>
+                            <span class="text-slate-400">MCP server</span>
+                        </div>
+                        <div class="flex items-center gap-1 text-emerald-700 font-medium">
+                            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
+                            <span>manual checkpoint — always pauses before push / PR</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="mb-14">
+            <h2 class="text-xs font-bold uppercase tracking-wider text-slate-400 mb-4 pb-3 border-b border-slate-200">Maintenance — Independent of the Pipeline</h2>
+            
+            <div class="bg-white rounded-xl border border-slate-200/80 shadow-xs hover:shadow-md transition-shadow p-5 relative overflow-hidden">
+                <div class="absolute left-0 top-0 bottom-0 w-1 bg-emerald-400"></div>
+                <div class="flex items-start justify-between gap-4 mb-2">
+                    <h3 class="font-mono font-bold text-slate-900 text-base">/heal-testcase</h3>
+                    <span class="text-[10px] uppercase font-bold tracking-wider px-2 py-0.5 rounded bg-emerald-50 text-emerald-700 border border-emerald-200">runs any time</span>
+                </div>
+                <p class="text-xs md:text-sm text-slate-600 mb-3 leading-normal">
+                    For an already-working web test that starts failing because a locator went stale. Classifies the failure and refuses to touch anything that looks like a real assertion or functional failure, re-resolves the locator via Playwright MCP, and always asks for confirmation before applying a fix. Desktop (Appium/WinAppDriver) failures are out of scope — flagged for manual fixing instead.
+                </p>
+                <div class="flex flex-wrap items-center justify-between gap-2 pt-3 border-t border-slate-100 text-[11px] text-slate-500">
+                    <div class="flex items-center gap-1.5">
+                        <span class="text-slate-400">via</span>
+                        <code class="font-mono bg-slate-100 px-1.5 py-0.5 rounded text-slate-700 font-medium">playwright</code>
+                        <span class="text-slate-400">MCP server</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="mb-14">
+            <h2 class="text-xs font-bold uppercase tracking-wider text-slate-400 mb-4 pb-3 border-b border-slate-200">MCP Servers This Pipeline Runs On</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <!-- ado -->
+                <div class="bg-white rounded-xl border border-slate-200/80 shadow-xs p-5 flex flex-col justify-between">
+                    <div>
+                        <h3 class="font-mono font-bold text-slate-900 text-sm mb-2 text-indigo-600">ado</h3>
+                        <p class="text-xs text-slate-600 leading-relaxed mb-4">
+                            Microsoft's official Azure DevOps MCP server. Reads work items and linked test cases, publishes new test cases.
+                        </p>
+                    </div>
+                    <div class="pt-3 border-t border-slate-100 text-[11px] text-slate-400">
+                        steps <code class="font-mono text-slate-600 font-medium">0</code> &bull; <code class="font-mono text-slate-600 font-medium">1</code>
+                    </div>
+                </div>
+
+                <!-- playwright -->
+                <div class="bg-white rounded-xl border border-slate-200/80 shadow-xs p-5 flex flex-col justify-between">
+                    <div>
+                        <h3 class="font-mono font-bold text-slate-900 text-sm mb-2 text-indigo-600">playwright</h3>
+                        <p class="text-xs text-slate-600 leading-relaxed mb-4">
+                            Drives the live QA app in Chrome to resolve real selectors and diagnose broken locators.
+                        </p>
+                    </div>
+                    <div class="pt-3 border-t border-slate-100 text-[11px] text-slate-400">
+                        steps <code class="font-mono text-slate-600 font-medium">3</code> &bull; <code class="font-mono text-slate-600 font-medium">heal-testcase</code>
+                    </div>
+                </div>
+
+                <!-- github -->
+                <div class="bg-white rounded-xl border border-slate-200/80 shadow-xs p-5 flex flex-col justify-between">
+                    <div>
+                        <h3 class="font-mono font-bold text-slate-900 text-sm mb-2 text-indigo-600">github</h3>
+                        <p class="text-xs text-slate-600 leading-relaxed mb-4">
+                            GitHub Copilot MCP endpoint. Commits the branch and opens the pull request.
+                        </p>
+                    </div>
+                    <div class="pt-3 border-t border-slate-100 text-[11px] text-slate-400">
+                        step <code class="font-mono text-slate-600 font-medium">5</code>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div>
+            <h2 class="text-xs font-bold uppercase tracking-wider text-slate-400 mb-4 pb-3 border-b border-slate-200">Repository Layout</h2>
+            
+            <div class="bg-white rounded-xl border border-slate-200/80 shadow-xs p-6 overflow-x-auto">
+                <pre class="font-mono text-xs text-slate-700 leading-relaxed">WorkflowTemplate/
+├── <span class="text-indigo-600 font-semibold">flow.config.json</span>          target repo path, ADO org/project, base branch, app URL
+├── <span class="text-indigo-600 font-semibold">.mcp.json</span>                 ado &bull; github &bull; playwright server definitions
+└── <span class="text-slate-500">.claude/</span>
+    ├── <span class="text-indigo-600 font-semibold">settings.json</span>         grants file access into the target repo
+    └── <span class="text-slate-500">skills/</span>
+        ├── <span class="text-slate-900 font-semibold">generate-testcase</span>   step 0
+        ├── <span class="text-slate-900 font-semibold">fetch-testcase</span>      step 1
+        ├── <span class="text-slate-900 font-semibold">generate-script</span>     step 2
+        ├── <span class="text-slate-900 font-semibold">find-locators</span>       step 3
+        ├── <span class="text-slate-900 font-semibold">review-script</span>       step 4
+        ├── <span class="text-slate-900 font-semibold">optimize-script</span>     step 4b
+        ├── <span class="text-slate-900 font-semibold">raise-pr</span>            step 5
+        └── <span class="text-slate-900 font-semibold">heal-testcase</span>       maintenance, independent
+└── <span class="text-indigo-600 font-semibold">README.md</span></pre>
+            </div>
+        </div>
+    </main>
+
+    <footer class="mt-16 border-t border-slate-200 bg-white py-6 text-center text-xs text-slate-400">
+        <p>WorkflowTemplate Architecture Dashboard &copy; 2026 &bull; Powered by Claude Code & MCP</p>
+    </footer>
+
+</body>
+</html>
